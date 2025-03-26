@@ -8,27 +8,27 @@ export default function ContactManager({addContact}) {
     Phonenumber: "",
   });
 
-  const handleChange = (e) => {
-    if (e.target.name === "name") {
-      setContactData({ ...contactData, name: e.target.value });
-    } else if (e.target.email === "email") {
-      setContactData({ ...contactData, email: e.target.value });
-    } else {
-      setContactData({ ...contactData, Phonenumber: e.target.value });
-    }
-  };
+  const handleNameChange = (event) => {
+      setContactData({ ...contactData, name: event.target.value });
+    } 
+    
+    const handleEmailChange = (event) => {
+        setContactData({ ...contactData, email: event.target.value });
+      }
 
-  const handleAdd = () => {
-    if (
-      contactData.name === "" ||
-      contactData.email === "" ||
-      contactData.Phonenumber === ""
-    )
-      alert("fill the all information");
+    const handlePhoneChange = (event) => {
+            setContactData({ ...contactData, Phonenumber: event.target.value });
+        }    
+
+const handleAdd = () => {
+  if (!contactData.name || !contactData.email || !contactData.Phonenumber) {
+    alert("Please fill all the information");
     return;
-  };
+  }
 
   addContact(contactData);
+  setContactData({ name: "", email: "", Phonenumber: "" });
+};
 
   return (
     <div className="flex flex-col items-center min-h-screen bg-gray-100 p-5">
@@ -48,19 +48,19 @@ export default function ContactManager({addContact}) {
               className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-400 outline-none"
               name="name"
               value={contactData.name}
-              onChange={handleChange}
+              onChange={handleNameChange}
             />
           </div>
 
           <div className="flex flex-col">
             <label className="font-semibold mb-1">Email Address:</label>
             <input
-              type="email"
+              type="text"
               placeholder="Enter email address"
               className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-400 outline-none"
-              name="Email"
+              name="email"
               value={contactData.email}
-              onChange={handleChange}
+              onChange={handleEmailChange}
             />
           </div>
 
@@ -70,9 +70,9 @@ export default function ContactManager({addContact}) {
               type="number"
               placeholder="Enter phone number"
               className="border border-gray-300 rounded-lg p-2 focus:ring-2 focus:ring-blue-400 outline-none"
-              name="Phonenumber"
+              name="phonenumber"
               value={contactData.Phonenumber}
-              onChange={handleChange}
+              onChange={handlePhoneChange}
             />
           </div>
         </div>
