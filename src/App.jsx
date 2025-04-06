@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import ContactList from './component/ContactList'
 import ContactsManage from './component/ContactsManage'
-import Header from './component/Header'
+// import Header from './component/Header'
 import uuid4 from 'uuid4'
 
 
@@ -31,7 +31,7 @@ const addContact = (data) => {
   <div>
      <ContactsManage addContact = {addContact}/>
      <ContactList contact={contact} removeContact ={removeContact}/>
-     <Header/>
+     {/* <Header/> */}
   </div>
  )
   
